@@ -1,0 +1,136 @@
+'mysql' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '8889'),
+            'database' => env('DB_DATABASE', 'TypingGame'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', 'root'),
+            'unix_socket' => env('DB_SOCKET','/Applications/MAMP/tmp/mysql/mysql.sock'),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]),
+        ],
+
+
+DB接続　流れ
+1 .envの準備
+
+例
+DB_CONNECTION=mysql ・・・接続先のsqlの指定。デフォルトだとmysqlになっている。
+DB_HOST=127.0.0.1・・・dbのホスト番号を指定。開発環境でやる場合は自分のpcが元になるので127.0.0.1を指定。
+DB_PORT=8889 ・・・接続したいDBのポート番号を指定。
+DB_DATABASE=laravel_sample ・・・接続したいDB名を指定。
+DB_USERNAME=root ・・・接続先のユーザーネームを指定。何も設定していない場合rootにする。
+DB_PASSWORD=root・・・接続先のパスワードを指定。何も設定していない場合rootにする。
+
+*本番環境に移す場合はAPP_DEBUG=trueをfalseに変更する。
+
+
+2 config\database で設定する。
+
+-1 //デフォルトのsqlの指定。初期設定はmysqlが指定されている。
+'default' => env('DB_CONNECTION', 'mysql'),
+
+-2  //接続先のsqlの詳細設定
+
+ 'connections' => [
+        'mysql' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),  ・・・ここを変更(開発環境の場合は127.0.01でok)
+            'port' => env('DB_PORT', '3306'), ・・・ここを変更(Mysqlの場合は基本3306でOK,MAMPを経由する場合は8805以降になっている事が多い)
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', ‘root’),
+            'password' => env('DB_PASSWORD', ‘root’), ・・・ここを変更(特に何もしてないならrootでok。SHOW VARIABLES LIKE ‘%sock%’;)
+            'unix_socket' => env('DB_SOCKET', '/Applications/MAMP/tmp/mysql/mysql.sock'), ・・・ここを変更(DBSOCKETの登録)
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
+
+cd /Applications/MAMP/htdocs/laravel
+cd /Applications/MAMP/htdocs/typeingPractice_app
+
+
+mysql commond関係
+
+(mamp使っている時限定のsql文使用)
+cd /Applications/MAMP/Library/bin/
+
+mysqlを使う為のコマンド
+後ろのオプションはログイン時の入力を省く為につけている。
+-u ・・・userpass
+-p ・・・password
+
+./mysql -u root -p;
+
+(ログイン時のpassは特に変更していない為rootでok)
+
+初期のみ
+(database 作成)
+CREATE DATABASE データベース名;
+
+できたか確認
+(DATABASE 一覧表示)
+SHOW DATABASES;
+
+扱うDBの選択
+use (DB名);
+
+テーブル一覧を表示
+show tables;
+
+tableの情報(カラムなど)の詳細表示
+describe (対象table名);
+
+(db削除)
+drop database データベース名;
+
+(dbsocket表示コマンド)
+SHOW VARIABLES LIKE ‘%sock%’;
+
+DBから出る。
+quit;
+
+
+sqlの条件文は`(バッククォート)で囲む。
+
+
+composer create-project laravel/laravel=5.8.*”
+sample_laravel --prefer-dist
+
+ポートの確認
+デフォルトではMySQLがTCPポート3306番でListenしているので、ポートが開いているか確認。
+$ netstat -tlpn
+0.0.0.0:3306 ～ LISTEN xxxx/mysqld の表示があればOK。
+
+
+マイグレーションコマンドを実行した場合に出てくるやつについて。
+
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table (0.06 seconds)
+
+~ingまで進んだ場合はmigrationFileを実行するまでに関係のある部分(routing
+関係のファイルなど)に問題がない。
+Migratingに進む前に他ファイルのバリテーションが入っている。
+
+
+Migratedはマイグレーションファイルを元にテーブルが作成された事を伝えている。
+
+Migratingまで進んでエラーが出ていたらマイグレーションファイルに問題がある。
+
+valitasion関係はコントローラーで管理する。
+errormesage等はデフォルトだと英語なので日本語化の設定もする。
