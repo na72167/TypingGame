@@ -1,0 +1,58 @@
+DB操作関係
+laravelは基本
+
+1.DBクラスを使う方法
+2.クエリビルダーを使う方法
+3.orm(object relational mapping,o/RM,ORM)使う方法
+
+laravelでは基本eloquent ORMを使う。
+modelはappディレクトリ配下に置く。
+(命名規則はアッパーキャメルの単数形)
+
+php artisan make:model (model名)
+
+
+php artisan make:model Drill —migration
+
+基本コントローラー側でnewメソッド等使う為の参照元等に使う。
+
+
+このコマンドで作成されたmodelクラスは同名+sのtableに対して自動でSQL文を作成される。
+
+バリテーション関数を作る前にmigrationコマンドを使ってtableを生成している場合,バリテーション関数内のカラムに付属させた属性と食い違ってた場合エラーが出る。
+
+その際生成済みのtableカラムの属性を変えたい場合はdbalを使わないといけない。
+
+コマンド
+composer require doctrine/dbal
+
+Doctrine DBALライブラリーというのは、現在のカラムの状態を決め、指定されたカラムに対する修正を行うsqlクエリを生成するために使用している。
+https://readouble.com/laravel/5.6/ja/migrations.html
+
+1.修正情報を書いたマイグレーション
+php artisan make:migration change_probrem_not_null_to_null_on_drills_table
+
+カラム名変更
+     $table->renameColumn('night_spanding', 'night_spending');
+
+down()
+修正前のメソッドを書いておく
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

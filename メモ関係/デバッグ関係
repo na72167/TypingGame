@@ -1,0 +1,14 @@
+Laravelではエラーや例外処理はすでに設定済みの為、
+DB接続する際にはわざわざ書いていたtry,catchも必要ない。
+
+アプリケーションエラー発生時にユーザーにどの程度の情報を表示させるかは、
+config/app.php設定ファイルのdebug設定オプションで決定する。
+
+デフォルト状態でこの設定オプションは、.envファイルで指定されるAPP_DEBUG環境変数の値を反映する。
+本番UP時には必ずAPP_DEBUGはfalseにする事。
+
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=base64:Rzd8HSsC3GtqdBeUDcJRLRdnsX3U8/EHk01A3IjbSwM=
+APP_DEBUG=true <--------これ
+APP_URL=http://localhost:8888 // MAMPで設定されているPORTに変更

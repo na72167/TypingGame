@@ -1,0 +1,98 @@
+laravel(5.8系)のフォルダ構成についてのメモ
+
+/-app
+  | |
+  | /Controllers・・・MVCでいうC(コントローラー)ファイルの置き場
+  |
+  /config・・・アプリケーションの各種設定ファイル置き場
+  |
+  |
+  |
+  /datebase・・・マイグレーションと初期値設定（シーティング）のファイル置き場
+  |     |
+  |     /factories
+  |             |
+  |
+  |
+  /public・・・アセット(画像・JavaScript・CSSなど)ファイル置き場
+  |
+  |
+  /resources
+  |       |
+  |       /views・・・MVCでいうV(ビュー)のファイルを置く場所
+  |
+  /routes
+  |    |
+  |    /web.php・・・ルーティング用の設定ファイル
+  |
+  /storage
+       |
+       /logs・・・ログファイルの置き場所
+
+
+===============古い方=================
+
+よく使うフォルダとディレクトリ構造など
+
+/親フォルダ
+|—/app
+|     |-model関係のファイル・・・DBから情報取得などの処理をまとめている。
+|
+|—/Http
+|     |-/controllers ・・・MVCでいうC(コントローラー)ファイルの置き場。
+|     |
+|     |-/Provider・・・ComposerServiceProvider(自作)などがここに入る。
+|     |-/middleware・・・アクション実行前・後に実行する処理を書く機能『middleware』に関係したファイルを管理する場所
+|          |-/Kernel.php・・・middleware機能をグローバルミドルウェア・ローカルミドルウェアに分けるファイル
+|
+/config ・・・アプリケーションの各種設定やファイル置き場。　
+|　  |
+|     |-/databese・・・接続予定のDBの細かい設定などができる。(接続先指定は.envで設定している)
+|
+/databases ・・・マイグレーションと初期設定(シーティング)のファイル置き場)
+|       |
+|       |-/factories
+|       |
+|       |-/migrations ・・・table作成時の設計書関係のファイルが入っている
+|
+|
+/public ・・・アセット(画像、JavaScript、CSSなど)ファイルの置き場
+|       |
+|       |-/js・・・js関係の素材ファイルなどを管理する。
+|       |   |-/app.js ・・・resources/js/app.jsで圧縮されたjsコード等がまとめられている。
+|       |
+|       |-/sounds・・・(自分で作るフォルダ)効果音フォルダなどの管理をする
+|
+|
+/resources ・・・ビューやアセットの元ファイル(LESS,SASS,JavaScript)を置く場所
+|        |-/js
+|        |   |
+|        |   |-/components ・・・vueのコンポーネント関係など(デフォルトでexsamplecomponentsファイルが置いてある。
+|        |   |
+|        |   |-/mester・・・(自分で作るフォルダ)keymapなどを管理するフォルダ
+|        |
+|        |-/app.js ・・・コンパイル関係のファイル。bootstrapの読み込みもここでやってる。
+|        |
+|        |-/lang・・・多言語化用のファイルをまとめておくためのファイル
+|        |
+|        |-/view ・・・MVCでいうV(ビュー)のファイルを置く場所
+|        |
+|        |-/sass・・・sass関係のファイル
+|
+/strorage  ・・・ コンパイルされたBladeテンプレート,ファイルベースのセッション,ファイルキャッシュなど,フレームワーク
+ |       |
+ |       |
+ |       |-/logs　・・・ログファイルの置き場所
+ |
+ |
+ |
+ /.env・・・雛形appの名前設定や接続先の記入
+/webpack.mix.js・・・laravel-mixで使うスクリプト関係のキーワード等をまとめている。
+
+show database
+create database (DB名);
+
+
+デフォルトではMySQLがTCPポート3306番でListenしているので、ポートが開いているか確認。
+$ netstat -tlpn
+0.0.0.0:3306 ～ LISTEN xxxx/mysqld の表示があればOK。

@@ -1,0 +1,48 @@
+必須パラメータ・・・通信時クエリパラメータがないと起動しない。
+Route::get('/drills/{id}/edit','DrillsController@edit')->name('drills.edit');
+
+任意パラメータ・・・通信時クエリパラメータがなくても起動する。
+Route::get('/drills/{id?}/edit','DrillsController@edit')->name('drills.edit');
+任意パラメータを使う際はデフォルト値を設定しておかないといけない。
+
+
+
+ルーティング関係に関して
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', function index()
+{
+    return view(view:'home')
+})->name('home');
+
+
+
+
+roteing関係の記入ルール
+1.第二引数にメソッドを指定して
+送信先を記入する.
+Route::get('/home', function index()
+{
+    return view(view:'home')
+})->name('home');
+
+2.第二引数にコントローラーを指定して送信先を記入する方法
+
+Route::get('/home', ‘index@contoller’)->name('home');
+
+#->(アロー関数)を使って指定しているname(‘home’)は
+viewファイル内でhref属性を使う際のアクセス経路をつなぐ為の属性。
+ここで指定したタグを押した場合そこから対応したname属性のルーティングにアクセスできる。
+
+
+
+make:auth関係
+Auth::routes();
+
+vander/laravel/framework/src/Illuminate/Routing/Router.php
+この中で定義されたルーティングが実行する。

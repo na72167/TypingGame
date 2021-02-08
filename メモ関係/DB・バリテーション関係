@@ -1,0 +1,63 @@
+db バリテーション関係
+バリテーション公式(5.8系)
+https://readouble.com/laravel/5.8/ja/validation.html
+
+例(Requestは引数指定する場合に使うもの)
+requiredは入力必須項目にのみつける。
+problem0にのみrequiredが付いている理由は
+問題文が最低一つはないとダメだから。
+
+ public function create(Request $request)
+    {
+      $request->validate([
+          'title' => 'required|string|max:255',
+          'problem0' => 'required|string|max:255',
+          'problem1' => 'string|max:255',
+          'problem2' => 'string|max:255',
+          'problem3' => 'string|max:255',
+          'problem4' => 'string|max:255',
+          'problem5' => 'string|max:255',
+          'problem6' => 'string|max:255',
+          'problem7' => 'string|max:255',
+          'problem8' => 'string|max:255',
+          'problem9' => 'string|max:255',
+      ]);
+
+    //バリテーションを通した後、登録処理に入る
+
+    //modelを使って,DBに登録する値をセット。
+      //Drillクラスを使ってインスタンス化したい場合もuse App\Drill;
+      //内容はDrills内の弄りたいカラムを取得してくる。
+      $drill = new Drill;
+
+
+     //上で生成したインスタンスに対して入力フォームから送信された情報を代入してくる。
+
+//その一
+      // 1つ1つ入れるか
+      //$drill->title = $request->title;
+      //$drill->category_name = $request->category_name;
+      //$drill->save();
+
+//その二
+      // fillを使って一気に入れるか(fillは$drillを作る際に使ったdrillクラス内にfillメソッドがある為useはいらない)
+      // $fillableを使っていないと変なデータが入り込んだ場合に勝手にDBが更新されてしまうので注意
+     //allメソッドは引数の更新をするメソッド
+     //all()は$requestの定義に使っている(?)Requestクラスが持っている為useは使わなくて良い。
+    //もしDB接続時に何か問題があった場合は自動で例外処理が入る。
+      $dorill->fill($request->all())->save();
+
+      // リダイレクトする
+      // その時にwithメソッドを使ってsessionフラッシュにメッセージを入れる。
+      return redirect('/drills/new')->with('flash_message',__('Registered'));
+
+    }
+
+    上のwith()を使った出力先のフラッシュメッセージ
+       {{-- フラッシュメッセージ --}}
+            @if (session('flash_message'))
+                <div class="alert alert-primary text-center" role="alert">
+                    {{session('flash_message')}}
+                </div>
+            @endif
+

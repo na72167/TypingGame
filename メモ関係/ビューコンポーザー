@@ -1,0 +1,185 @@
+ビューコンポーザー(laravel)
+ビューで表示させるために通常のMVCのFWでは、そのロジックをビューやコントローラー(主にコントローラー)に書いていましたが、そうすると処理が多くなる程読みにくいコードになっていく。
+
+ビューにはほとんどロジックは書かずにただ『変数の中身を表示するだけ』にした方がコードが読みやすい。
+
+・DBへ接続してCRUD処理
+・ビューへ渡す値を作る
+・その値をビューへ渡す
+
+というためのコードを毎回書いていたが
+毎回お決まりのコードだと書かずにしたい所。
+Laravelでは、こういった悩みを解決してくれるのが『ビューコンポーザー』という機能です。
+
+例えば、下記のようなブログの一覧と詳細画面があったとするとそこには『サイドバー』が大抵あり、どちらのアクションでも同じ情報を取得して表示する処理を書かなければいけません。
+
+<?php
+
+class BlogController exends Contoller
+{
+  public function index()
+  {
+     //メインコンテンツ
+     $posts = Post::all();
+
+     //人気記事
+　 $ranking_posts = Post::lanking();
+
+    //最近の投稿
+    $latest_posts = Post::latest(5);
+
+    //カテゴリ
+    $categories = Category::all();
+    foreach($categories as $key => $category){
+         $category->count = category::where(‘id’,$category->id)->count
+         $categories->put($key,$category);
+    }
+  }
+}
+
+簡単にまとめれば『お決まりのコントローラー・ビューの処理は別ファイルにまとめておこう』という感じ。
+
+下の様な毎回ログインメンバーの名前を表示する処理などは基本毎回使うものなので別にまとめておく。
+
+$user = \Auth::user();
+if($user)  {
+echo “hello $user->name”;
+}
+
+実際に作る
+
+その一
+
+ビューコンポーザーの作り方
+
+ビューコンポーザーの作り方はざっくりと3STEPあり
+1.サービスプロパイダクラスの作成
+2.ビューコンポーザークラスの作成とcomposeメソッドの実装
+3.サービスプロパイダクラスのbootメソッドでビューコンポーザークラスを作成する
+
+になる。
+
+1.サービスプロパイダクラスの作成
+
+サービスプロパイダクラスの作成
+serviceproviderクラスはartisanコマンドで簡単に作れる。
+サービスプロパイダというのは、『アプリケーションの準備段階で何かしらの処理や設定を行うためのクラスをして用意されている物です。
+
+名前は基本何でも大丈夫だけどコンポーザーを提供するので名前は『ComposerServiceProvider』にした方が良い。
+(ていうかだいたいこれっぽい)
+
+コマンド例
+php artisan make:provider ComposerServiceProvider
+
+でhttp\provider\の配下に出来上がる。
+
+2.ビューコンポーザークラスの作成とcomposeメソッドの実装
+
+ビューコンポーザークラスは自分の手で作る。
+ファイルはapp\http下に作ったViewComposers
+
+
+
+作成例(UserComposer)
+*継承は無し。
+
+<?php
+
+namespace App\Http\ViewComposers;
+
+use Illuminate\Contacts\View\View;
+
+class UserComposer{
+
+	public function compose(view $view)
+	{
+		$view->(‘user’,’ユーザー情報を第二引数へ’);
+	}
+}
+
+
+
+今回の場合だと
+
+<?php
+
+namespace App\Http\ViewComposers;
+
+use Illuminate\Contacts\View\View;
+use Illuminate\Contacts\Auth\Guard;
+
+class UserComposer{
+	protected $auth;
+
+	public function compose(Guard $auth)
+	{
+	     $this->auth = $auth;
+	}
+
+	public function compose(View $view)
+	{
+	     // userという変数を使える様にし、その中に$this->auth->user()という値を詰める。
+	     $view->with(‘user’,$this->auth->user());
+	}
+}
+
+============================
+
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class ComposerServiceProvider extends ServiceProvider
+{
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //連想配列で流します
+        //キーにコンポーザを指定し、値にビューを指定します(ワイルドカードも使えます。)
+	//ワイルドカード・・・何かしら情報を引っ張ってくる処理等に使う条件式内などに使う
+　　 文字が入る時などに使う。
+        piyo*.txt・・・中に0文字以上の何かが入る。
+        piyo?.txt・・・中に1文字入る。
+        //この場合,layoutsディレクトリ配下のビューテンプレートが読み込まれた場合にUserComposerを読み込み(=Superが作られる)という設定の仕方になります。
+        View::composer([
+            UserComposer::Class => 'layouts.*'
+        ])
+    }
+}
+
+=============================
+11.5 config/app.phpに設定を追加
+config/app.phpのprovidersにComposerServiceProviderを追加する事で
+ComposerServiceProviderをlaravelが自動で実行できる様になる。
+
+‘providers’ => [
+ComposerserviceProvider::class,
+],
+
+
+ビューコンポーザーの作成
+
+1.サービスプロパイダクラスの作成
+2.ビューコンポーザクラスの作成とcomposeメソッドの実装
+3.ビューコンポーザークラスのbootメソッドでビューコンポーザクラスを利用する
+
+1.コマンド打つ
+php artisan make:provider ComposerServiceProvider
+
+2.

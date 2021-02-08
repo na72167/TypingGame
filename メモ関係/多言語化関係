@@ -1,0 +1,27 @@
+多言語化関係
+resources/lang内に(対象言語).jsonの形でファイルを作る。
+連想配列の形で
+{
+“対象ファイルの文字列”:”変換したい文字列”
+}
+
+で記入
+
+例
+ja.json
+{
+“Drill Regiser”:”新規登録”,
+“title”:”タイトル”
+}
+
+翻訳ファイルを作成したのち
+
+config/app.phpをいじる。
+
+'locale' => 'ja',   ・・・アプリケーション全体の言語指定
+
+'fallback_locale' => 'ja',  ・・・指定言語がない場合に代わりに表示させる言語の指定
+
+
+
+認証系の翻訳は下記を参照。https://readouble.com/laravel/5.8/ja/auth-php.htmlバリデーションの翻訳は下記を参照。https://readouble.com/laravel/5.8/ja/validation-php.htm
