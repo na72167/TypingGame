@@ -1,0 +1,3 @@
+認証系のものを一括で作るコマンド
+(5.8系）
+php artisan make:auth
