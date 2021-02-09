@@ -28,7 +28,7 @@
 // }
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('child');
 });
 
 // 認証系の物の物を一括で行う。
