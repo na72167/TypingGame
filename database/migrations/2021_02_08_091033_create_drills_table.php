@@ -30,9 +30,6 @@ use Illuminate\Database\Migrations\Migration;
 
 // dropIfExists・・・指定するテーブルが存在した際に削除するメソッド。
 
-
-
-
 class CreateDrillsTable extends Migration
 {
     /**
