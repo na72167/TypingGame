@@ -12,7 +12,13 @@ modelはappディレクトリ配下に置く。
 php artisan make:model (model名)
 
 
-php artisan make:model Drill —migration
+マイグレーションファイルと一緒にモデルも作成したい場合は
+php artisan make:model Drill -—migration
+
+省略してこんな感じでも書ける。
+php artisan make:model Drill -m
+
+<?php
 
 基本コントローラー側でnewメソッド等使う為の参照元等に使う。
 
