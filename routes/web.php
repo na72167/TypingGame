@@ -27,13 +27,24 @@
 //     }
 // }
 
-Route::get('/', function () {
-    return view('child');
-});
 
 // 認証系の物の物を一括で行う。
 //vendor/laravel/framework/src/Illuminate/Routing/Router.phpで
 //定義されたルーティングが読み込まれている。
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+use App\Http\Controllers\DrillsController;
+
+Route::get('/', function () {
+    return view('child');
+});
+
+Route::get('/drills/new','DrillsController@new')->name('drills.new');
+Route::post('/drills','DrillsController@create')->name('drills.create');
+Route::get('/drills','DrillsController@index')->name('drills');
+Route::get('/drills/{id}/edit','DrillsController@edit')->name('drills.edit');
+Route::post('/drills/{id}','DrillsController@update')->name('drills.update');
+Route::post('/drills/{id}/delete','DrillsController@destroy')->name('drills.delete');
+Route::get('/drills/{id}','DrillsController@show')->name('drills.show');
+
+Auth::routes();
