@@ -1,0 +1,36 @@
+Laravel はデフォルトでSQLログを出力してくれないのでデバッグ時に困ることがよくある。
+その時は
+app/provider/appServiceProvider.phpに下記を追記しましょう。
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+
+     //==========================
+     静的メンバを扱う際のバックスラッシュについて
+     https://teratail.com/questions/128748
+    public function register()
+    {
+        if(config('app.env') !== 'production'){
+            \DB::listen(function ($query){
+                \log::info("Query Time:{$query->time}s] $query->sql");
+            });
+        }
+    }
+    //==========================
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+    }
+}
+

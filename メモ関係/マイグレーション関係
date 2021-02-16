@@ -5,3 +5,11 @@
 
 下記コマンドで追加する。
 composer require doctrine/dbal
+
+Laravel migration カラム編集まとめ
+https://qiita.com/mdrq/items/f10e488caa4497eec79b
+
+
+auth
+
+php artisan route:list

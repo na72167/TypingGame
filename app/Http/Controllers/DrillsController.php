@@ -49,6 +49,7 @@ class DrillsController extends Controller
     return redirect('/drills/new')->with('flash_message',__('Registered'));
     }
 
+
     public function show($id){
         // GETパラメータが数字かどうかをチェックする
         if(!ctype_digit($id)){

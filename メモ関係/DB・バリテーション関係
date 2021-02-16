@@ -26,9 +26,9 @@ problem0にのみrequiredが付いている理由は
     //バリテーションを通した後、登録処理に入る
 
     //modelを使って,DBに登録する値をセット。
-      //Drillクラスを使ってインスタンス化したい場合もuse App\Drill;
-      //内容はDrills内の弄りたいカラムを取得してくる。
-      $drill = new Drill;
+    //Drillクラスを使ってインスタンス化したい場合もuse App\Drill;
+    //内容はDrills内の弄りたいカラムを取得してくる。
+    $drill = new Drill;
 
 
      //上で生成したインスタンスに対して入力フォームから送信された情報を代入してくる。
@@ -55,9 +55,9 @@ problem0にのみrequiredが付いている理由は
 
     上のwith()を使った出力先のフラッシュメッセージ
        {{-- フラッシュメッセージ --}}
-            @if (session('flash_message'))
-                <div class="alert alert-primary text-center" role="alert">
-                    {{session('flash_message')}}
-                </div>
-            @endif
+        @if (session('flash_message'))
+            <div class="alert alert-primary text-center" role="alert">
+                {{session('flash_message')}}
+            </div>
+        @endif
 

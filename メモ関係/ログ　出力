@@ -1,0 +1,14 @@
+Laravelでログ出力を行う
+https://qiita.com/toontoon/items/cbbc88c8b5baa1756b16
+
+eclipseでLaravel開発環境を構築する。デバッグでブレークポイントをつけて止める。(WindowsもVagrantもdockerも)
+https://qiita.com/toontoon/items/76fa7f8845b20776077c
+
+
+https://laraweb.net/practice/2561/
+
+https://qiita.com/ak-ymst/items/00b41873be55e878eb84
+
+
+use Log;
+Log::debug('START TRANSACTION');

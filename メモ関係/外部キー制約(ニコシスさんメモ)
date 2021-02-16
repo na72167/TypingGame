@@ -1,0 +1,10 @@
+外部キー制約はaddで後から追加しているっぽい
+修正関係はupdateにしてるっぽい
+
+後から追加した際には
+php artisan make:migration add_user_id_to_drills --table=drills
+
+php artisan make:migration add_user_id_to_drills --table=drills
+
+//外部キー制約について
+https://qiita.com/igayamaguchi/items/897097ff430588f43a30
