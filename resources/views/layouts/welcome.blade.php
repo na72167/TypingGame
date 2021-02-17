@@ -10,7 +10,6 @@
         <div id='container'>
             @yield('content')
         </div>
-
         @section('footer')
             <script src="app.js"></script>
         @show

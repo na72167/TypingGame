@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if(config('app.env') !== 'production'){
             \DB::listen(function ($query){
-                \log::info("Query Time:{$query->time}s] $query->sql");
+                \Log::info("Query Time:{$query->time}s] $query->sql");
             });
         }
     }

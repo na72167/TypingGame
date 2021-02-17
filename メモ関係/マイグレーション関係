@@ -13,3 +13,9 @@ https://qiita.com/mdrq/items/f10e488caa4497eec79b
 auth
 
 php artisan route:list
+
+Laravel Migration(カラム属性変更)
+https://yshrfmru.hatenablog.com/entry/2019/01/04/203957
+
+Laravelでfindしたレコードから特定のカラムを抽出したい
+https://qiita.com/hppRC/items/25fb5af10d87618f2889

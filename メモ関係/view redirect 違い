@@ -1,0 +1,16 @@
+Laravel view()とredirect()の違いについてまとめてみた
+https://qiita.com/mktro/items/c948c0034726397d90d2
+
+view()・・・get送信用
+redirect()・・・post送信用
+
+route関係
+nameを指定しない場合は直接パス指定する。
+(view(),redirect()両方)
+return view ('/password/passRemindReceive');
+return redirect('/passwordReset');
+
+postメソッドを指定したフォームからdateをreturnした場合、
+redirect()でルート指定をしないと飛ばないかもしれない。
+
+(view()を使って直接パスを指定したらpostフォームでも飛ぶ。)

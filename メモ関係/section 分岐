@@ -1,0 +1,6 @@
+Laravel5.1 blade yieldの中身で条件分岐したい
+https://qiita.com/chr/items/205b1fa31cda4997efdd
+
+PHP Illuminate\View Factory::yieldContent - 2件のコード例が見つかりました。すべてオープンソースプロジェクトから抽出されたPHPのIlluminate\View\Factory::yieldContentの実例で、
+最も評価が高いものを厳選しています。コード例の評価を行っていただくことで、より質の高いコード例が表示されるようになります。
+https://hotexamples.com/jp/examples/illuminate.view/Factory/yieldContent/php-factory-yieldcontent-method-examples.html
