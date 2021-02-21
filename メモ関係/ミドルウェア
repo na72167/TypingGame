@@ -28,10 +28,17 @@ php artisan make:middleware CheckLoggedIn
 
 例
 
+
+
+
+
+
+
 <?php
 
 namespace App\Http\Middleware;
 
+//Closureクラス・・・対象引数に挿入された関数を無名関数として扱う為のオブジェクトを生成するクラス
 use Closure;
 
 class CheckloggedIn
@@ -56,8 +63,6 @@ class CheckloggedIn
     }
 }
 
-
-
 アクション実行後にミドルウェア機能を走らせたい場合
 
  public function handle($request, Closure $next)
@@ -71,6 +76,10 @@ class CheckloggedIn
            return redirect(‘login’);
         }
     }
+
+
+
+
 
 
 グローバルミドルウェアの設定の仕方
