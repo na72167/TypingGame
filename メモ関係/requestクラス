@@ -1,0 +1,8 @@
+[Laravel] Requestクラスのメソッドまとめ
+https://qiita.com/kuzira_vimmer/items/54d9bfd88f66208c1709
+
+GateとPolicyの違い
+(恐らく)
+Policy・・・特定のDBに対するcrud処理を制御する。
+Gate・・・DBに関する事以外のユーザーのアクション(例：特定ページへのアクセス)
+を制御する。
