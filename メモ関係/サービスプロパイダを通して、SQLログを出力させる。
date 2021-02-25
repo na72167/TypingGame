@@ -34,3 +34,69 @@ class AppServiceProvider extends ServiceProvider
     }
 }
 
+
+管理者権限について。
+===================================================
+
+
+canメソッドを利用した制限
+authorizeメソッドではなくcanメソッドも利用することができます。canメソッドを利用する場合は、$userを使ってcanメソッドを使用するためauth()ヘルパー関数等を利用してユーザ情報を取得しておく必要があります。
+
+
+public function show(Post $post){
+
+    $user = auth()->user(); //アクセスしているユーザ情報を取得
+
+    if($user->can('view',$post)){
+
+    	return view('posts.show',compact('post'));
+
+    }else{
+
+        dd('閲覧する許可がありません。');
+    }
+
+}
+canメソッドではユーザのidと記事を作成したユーザのidが一致しない場合は、403 unauthorizedのExceptionがthrowされません。
+
+canメソッドではなく逆の処理を行うcantメソッド、cannotメソッドがあります。
+
+middleware(ミドルウェア)を利用した制限
+middleware(ミドルウェア)を利用してアクセス制限を行うこともできます。下記ではweb.phpファイルのルーティングでmiddlewareの設定を行なっています。
+
+
+Route::get('/posts/{post}','PostController@show')->middleware('can:view,post');
+ユーザのidと記事を作成したユーザのidが一致しない場合は、403 unauthorizedのExceptionがthrowされます。
+
+
+===================================================
+
+
+===================================================
+権限によるHTMLの出し分け
+Gate機能によってロールを設定していると、Bladeテンプレート、いわゆるビューの部分でもそれによって出し分けが出来ます。
+
+例えばナビゲーションなど、以下のように@canディレクティブを用いて記述する事で、該当権限のユーザにのみ表示する事が出来ます。
+
+<nav>
+  <ul>
+    @can('system-only') {{-- システム管理者権限のみに表示される --}}
+      <li><a href="">機能１</a></li>
+    @elsecan('admin-higher')　{{-- 管理者権限以上に表示される --}}
+      <li><a href="">機能２</a></li>
+      <li><a href="">機能３</a></li>
+    @elsecan('user-higher') {{-- 一般権限以上に表示される --}}
+      <li><a href="">機能４</a></li>
+      <li><a href="">機能４</a></li>
+      <li><a href="">機能４</a></li>
+      <li><a href="">機能５</a></li>
+    @endcan
+  </ul>
+</nav>
+===================================================
+
+たった3ステップ！Laravel Gateで実行権限を導入する実例
+https://blog.capilano-fw.com/?p=2650
+
+シンプル！Laravel5.6で「権限つき」ログインさせる方法
+https://blog.capilano-fw.com/?p=420
