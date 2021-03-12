@@ -203,3 +203,208 @@ php artisan make:migration update_general_profs --table=general_profs
 php artisan make:migration update_report_category --table=report_category
 php artisan make:migration update_review_likes --table=review_likes
 php artisan make:migration update_users --table=users
+=================
+create_browsing_history_recodes_table
+create_company_informations_table
+create_contributor_profs_table
+create_dm_messages_table
+create_employee_reviews_table
+create_general_profs_table
+create_report_category_table
+
+create_review_likes_table
+create_users_table
+=================
+
+php artisan make:migration add_browsing_history_recodes --table=browsing_history_recodes
+php artisan make:migration add_contributor_profs --table=contributor_profs
+php artisan make:migration add_dm_messages --table=dm_messages
+php artisan make:migration add_employee_reviews --table=employee_reviews
+php artisan make:migration add_general_profs --table=general_profs
+
+
+php artisan make:migration add_report_category --table=report_category
+php artisan make:migration add_review_likes --table=review_likes
+php artisan make:migration add_users --table=users
+
+
+
+
+-- ダンプしたテーブルの制約
+--
+
+--
+-- テーブルの制約 `browsing_historys_recodes`
+--
+ALTER TABLE `browsing_historys_recodes`
+  ADD CONSTRAINT `browsing_historys_recodes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `browsing_historys_recodes_ibfk_2` FOREIGN KEY (`review_id`) REFERENCES `employee_reviews` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+
+
+
+php artisan make:migration update_browsing_history_recodes --table=browsing_history_recodes
+php artisan make:migration update_company_informations --table=company_informations
+php artisan make:migration update_contributor_profs --table=contributor_profs
+php artisan make:migration update_dm_messages --table=dm_messages
+php artisan make:migration update_employee_reviews --table=employee_reviews
+php artisan make:migration update_general_profs --table=general_profs
+php artisan make:migration update_report_category --table=report_category
+php artisan make:migration update_review_likes --table=review_likes
+php artisan make:migration update_users --table=users
+
+
+=================
+create_browsing_history_recodes_table
+create_company_informations_table
+create_contributor_profs_table
+create_dm_messages_table
+create_employee_reviews_table
+create_general_profs_table
+create_report_category_table
+
+create_review_likes_table
+create_users_table
+=================
+
+php artisan make:migration add_browsing_history_recodes --table=browsing_history_recodes
+php artisan make:migration add_contributor_profs --table=contributor_profs
+php artisan make:migration add_dm_messages --table=dm_messages
+php artisan make:migration add_employee_reviews --table=employee_reviews
+php artisan make:migration add_general_profs --table=general_profs
+
+
+php artisan make:migration add_report_category --table=report_category
+php artisan make:migration add_review_likes --table=review_likes
+php artisan make:migration add_users --table=users
+
+
+
+
+-- ダンプしたテーブルの制約
+--
+
+--
+-- テーブルの制約 `browsing_historys_recodes`
+--
+ALTER TABLE `browsing_historys_recodes`
+  ADD CONSTRAINT `browsing_historys_recodes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `browsing_historys_recodes_ibfk_2` FOREIGN KEY (`review_id`) REFERENCES `employee_reviews` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+
+
+
+php artisan make:migration update_browsing_history_recodes --table=browsing_history_recodes
+php artisan make:migration update_company_informations --table=company_informations
+php artisan make:migration update_contributor_profs --table=contributor_profs
+php artisan make:migration update_dm_messages --table=dm_messages
+php artisan make:migration update_employee_reviews --table=employee_reviews
+php artisan make:migration update_general_profs --table=general_profs
+php artisan make:migration update_report_category --table=report_category
+php artisan make:migration update_review_likes --table=review_likes
+php artisan make:migration update_users --table=users
+
+=================
+create_browsing_history_recodes_table
+create_company_informations_table
+create_contributor_profs_table
+create_dm_messages_table
+create_employee_reviews_table
+create_general_profs_table
+create_report_category_table
+
+create_review_likes_table
+create_users_table
+=================
+
+php artisan make:migration add_browsing_history_recodes --table=browsing_history_recodes
+php artisan make:migration add_contributor_profs --table=contributor_profs
+php artisan make:migration add_dm_messages --table=dm_messages
+php artisan make:migration add_employee_reviews --table=employee_reviews
+php artisan make:migration add_general_profs --table=general_profs
+
+
+php artisan make:migration add_report_category --table=report_category
+php artisan make:migration add_review_likes --table=review_likes
+php artisan make:migration add_users --table=users
+
+
+
+
+-- ダンプしたテーブルの制約
+--
+
+--
+-- テーブルの制約 `browsing_historys_recodes`
+--
+ALTER TABLE `browsing_historys_recodes`
+  ADD CONSTRAINT `browsing_historys_recodes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `browsing_historys_recodes_ibfk_2` FOREIGN KEY (`review_id`) REFERENCES `employee_reviews` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+
+
+
+php artisan make:migration update_browsing_history_recodes --table=browsing_history_recodes
+php artisan make:migration update_company_informations --table=company_informations
+php artisan make:migration update_contributor_profs --table=contributor_profs
+php artisan make:migration update_dm_messages --table=dm_messages
+php artisan make:migration update_employee_reviews --table=employee_reviews
+php artisan make:migration update_general_profs --table=general_profs
+php artisan make:migration update_report_category --table=report_category
+php artisan make:migration update_review_likes --table=review_likes
+php artisan make:migration update_users --table=users
+
+
+=================
+create_browsing_history_recodes_table
+create_company_informations_table
+create_contributor_profs_table
+create_dm_messages_table
+create_employee_reviews_table
+create_general_profs_table
+create_report_category_table
+
+create_review_likes_table
+create_users_table
+=================
+
+php artisan make:migration add_browsing_history_recodes --table=browsing_history_recodes
+php artisan make:migration add_contributor_profs --table=contributor_profs
+php artisan make:migration add_dm_messages --table=dm_messages
+php artisan make:migration add_employee_reviews --table=employee_reviews
+php artisan make:migration add_general_profs --table=general_profs
+
+
+php artisan make:migration add_report_category --table=report_category
+php artisan make:migration add_review_likes --table=review_likes
+php artisan make:migration add_users --table=users
+
+
+
+
+-- ダンプしたテーブルの制約
+--
+
+--
+-- テーブルの制約 `browsing_historys_recodes`
+--
+ALTER TABLE `browsing_historys_recodes`
+  ADD CONSTRAINT `browsing_historys_recodes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `browsing_historys_recodes_ibfk_2` FOREIGN KEY (`review_id`) REFERENCES `employee_reviews` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+
+
+
+php artisan make:migration update_browsing_history_recodes --table=browsing_history_recodes
+php artisan make:migration update_company_informations --table=company_informations
+php artisan make:migration update_contributor_profs --table=contributor_profs
+php artisan make:migration update_dm_messages --table=dm_messages
+php artisan make:migration update_employee_reviews --table=employee_reviews
+php artisan make:migration update_general_profs --table=general_profs
+php artisan make:migration update_report_category --table=report_category
+php artisan make:migration update_review_likes --table=review_likes
+php artisan make:migration update_users --table=users
