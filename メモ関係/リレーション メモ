@@ -1,0 +1,13 @@
+一対一の場合(正位置)
+hasOne('');
+
+一対多の場合(正位置)
+hasMany('');
+
+一対多の場合(逆位置)
+belongsTo('');
+
+// belongsToなどで書かれる逆位置は恐らくDB設計の従属関係の流れを参考に正位置・逆位置が決まっている。
+
+【PHP/Laravel】1対多のHasmanyの基本的な使い方をマスターしよう!
+https://www.sejuku.net/blog/63335

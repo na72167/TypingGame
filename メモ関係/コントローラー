@@ -1,3 +1,8 @@
 php artisan make:controller DrillsController
 コントローラー名はアッパーキャメルケースで〇〇Controllerという命名規則
 (複数形にするのが監修)
+
+
+Laravel まとめ5(記事削除)
+//view内で直接コントローラーを指定するやり方が書いてる。
+https://qiita.com/hththt/items/ab71314b9552e9a68ef1

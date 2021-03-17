@@ -1,4 +1,4 @@
-DB接続　流れ
+DB接続 流れ
 1 .envの準備
 
 例
@@ -10,7 +10,6 @@ DB_USERNAME=root ・・・接続先のユーザーネームを指定。何も設
 DB_PASSWORD=root・・・接続先のパスワードを指定。何も設定していない場合rootにする。
 
 *本番環境に移す場合はAPP_DEBUG=trueをfalseに変更する。
-
 
 2 config\database で設定する。
 

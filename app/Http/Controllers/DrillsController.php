@@ -20,6 +20,7 @@ class DrillsController extends Controller
 
     public function create(Request $request)
     {
+
     $request->validate([
     'title' => 'required|string|max:255',
     'problem0' => 'required|string|max:255',
@@ -50,6 +51,8 @@ class DrillsController extends Controller
     }
 
 
+
+    // ======================================
     public function show($id){
         // GETパラメータが数字かどうかをチェックする
         if(!ctype_digit($id)){
@@ -61,6 +64,9 @@ class DrillsController extends Controller
         //第二引数に配列を持たせるとview側に変数を渡せる。
         return view('drills.show',['drill' => $drill]);
     }
+    // ======================================
+
+
 
     public function edit($id){
         // GETパラメータが数字かどうかをチェックする
