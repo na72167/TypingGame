@@ -1,0 +1,152 @@
+
+1.composer create-project "laravel/laravel=6.*"
+を特定フォルダ内で入力
+
+2.DBの接続準備
+    -envの準備例
+    DB_CONNECTION=mysql ・・・接続先のsqlの指定。デフォルトだとmysqlになっている。
+    DB_HOST=127.0.0.1・・・dbのホスト番号を指定。開発環境でやる場合は自分のpcが元になるので127.0.0.1を指定。
+    DB_PORT=8889 ・・・接続したいDBのポート番号を指定。
+    DB_DATABASE=emrev_laravue ・・・接続したいDB名を指定。
+    DB_USERNAME=root ・・・接続先のユーザーネームを指定。何も設定していない場合rootにする。
+    DB_PASSWORD=root・・・接続先のパスワードを指定。何も設定していない場合rootにする。*本番環境に移す場合はAPP_DEBUG=trueをfalseに変更する。
+
+
+    -config\database で設定する。-1 //デフォルトのsqlの指定。初期設定はmysqlが指定されている。
+    'default' => env('DB_CONNECTION', 'mysql'),-2  //接続先のsqlの詳細設定
+    'connections' => [
+        'mysql' => ['driver' => 'mysql',
+                   'url' => env('DATABASE_URL'),
+                   'host' => env('DB_HOST', '127.0.0.1'),  ・・・ここを変更(開発環境の場合は127.0.01でok)
+                   'port' => env('DB_PORT', '3306'), ・・・ここを変更(Mysqlの場合は基本3306でOK,MAMPを経由する場合は8805以降になっている事が多い)
+                   'database' => env('DB_DATABASE', 'emrev_laravue'),・・・ここを変更
+                   'username' => env('DB_USERNAME', ‘root’),
+                   'password' => env('DB_PASSWORD', ‘root’), ・・・ここを変更(特に何もしてないならrootでok。SHOW VARIABLES LIKE ‘%sock%’;)
+                   'unix_socket' => env('DB_SOCKET', '/Applications/MAMP/tmp/mysql/mysql.sock'), ・・・ここを変更(DBSOCKETの登録)
+                   'charset' => 'utf8mb4',
+                   'collation' => 'utf8mb4_unicode_ci',
+                   'prefix' => '',
+                   'prefix_indexes' => true,
+                   'strict' => true,
+                   'engine' => null,
+                   'options' => extension_loaded('pdo_mysql') ? array_filter([PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA')
+                   ,]) : [],
+                   ],
+
+
+    http://localhost:8000/
+    cd /Applications/MAMP/htdocs/laravel
+    cd /Applications/MAMP/htdocs/typeingPractice_appmysql
+    commond関係(mamp使っている時限定のsql文使用)
+    cd /Applications/MAMP/Library/bin/
+    mysqlを使う為のコマンド
+    後ろのオプションはログイン時の入力を省く為につけている。
+    -u ・・・userpass -p ・・・password./
+    mysql -u root -p;
+    (ログイン時のpassは特に変更していない為rootでok)
+    初期のみ(database 作成)CREATE DATABASE データベース名;
+
+    できたか確認(DATABASE 一覧表示)SHOW DATABASES;
+    扱うDBの選択use (DB名);
+    テーブル一覧を表示show tables;
+    tableの情報(カラムなど)の詳細表示describe (対象table名);
+    (db削除)drop database データベース名;
+
+
+    -app.phpを
+    'locale' => 'ja',
+    に変更。
+
+    3.マイグレーションファイルの準備
+    php artisan make:migration (ファイル名) --create=(テーブル名)
+
+    一通り出来た場合
+    php artisan migrate
+
+    4.vueの準備
+    npm install -D vue@2
+
+    5.webpackの準備
+    webpack.mix.js
+    const mix = require('laravel-mix')
+
+    mix.browserSync('vuesplash.test')
+    .js('resources/js/app.js', 'public/js')
+    .version()
+
+
+
+
+    6動作確認(Hello World出力)
+
+    web.php
+    // APIのURL以外のリクエストに対してはindexテンプレートを返す
+    // 画面遷移はフロントエンドのVueRouterが制御する
+    Route::get('/{any?}', fn() => view('index'))->where('any', '.+');
+
+    index.blade.html
+
+    <!doctype html>
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+        <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ config('app.name') }}</title>
+
+        <!-- Scripts -->
+        <script src="{{ mix('js/app.js') }}" defer></script>
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather|Roboto:400">
+        <link rel="stylesheet" href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css">
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="https://hypertext-candy.s3-ap-northeast-1.amazonaws.com/posts/vue-laravel-tutorial/app.css">
+        </head>
+        <body>
+        //ここに描写される
+        <div id="app"></div>
+        </body>
+    </html>
+
+
+    resources/js/app.js を編集します。
+
+    app.js
+    import Vue from 'vue'
+
+    new Vue({
+    el: '#app',
+    template: '<h1>Hello world</h1>'
+    })
+
+    npm run watch
+    で描写されたら成功！
+
+
+    その後
+    ビュールーターの追加
+    npm install -D vue-router
+
+
+
+    テストコードの実装
+
+    インメモリの SQLite を用いる
+    テスト実行時に開発用の PostgreSQL データベースとは別の SQLite データベースが用いるための設定を行います。インメモリの SQLite を利用するのでテスト実行が終わると消去され無駄なデータが残りません。
+
+    まず config/database.php の connections に以下の接続情報を追加しましょう。
+
+    database.php
+    'sqlite_testing' => [
+        'driver' => 'sqlite',
+        'database' => ':memory:',
+        'prefix' => '',
+    ],
+    そして phpunit.xml に DB 接続の設定を追記します。
+
+    phpunit.xml
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="DB_CONNECTION" value="sqlite_testing"/> <!-- ★ 追加 -->
+        <!-- 以下略 -->

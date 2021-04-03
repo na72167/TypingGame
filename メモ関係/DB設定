@@ -108,8 +108,8 @@ quit;
 
 sqlの条件文は`(バッククォート)で囲む。
 
-
-composer create-project laravel/laravel=5.8.*”
+6.9
+composer create-project laravel/laravel=6.9.*”
 sample_laravel --prefer-dist
 
 ポートの確認

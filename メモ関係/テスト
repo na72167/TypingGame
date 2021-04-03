@@ -1,0 +1,11 @@
+
+「ようこそ・・・『テストの世界』へ・・・」
+https://qiita.com/shonansurvivors/items/eff8dbd4a63f7b608eaa
+
+HTTP レスポンスステータスコード
+https://developer.mozilla.org/ja/docs/Web/HTTP/Status
+
+基本的なテストの流れはアクションにつながったルーティングに対して、
+リクエストを投げてそのレスポンスステータスコードを取得のち変数に格納。
+
+格納内のレスポンスステータスが想定の物かを比較・確認。

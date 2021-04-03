@@ -1,0 +1,18 @@
+先に下の記事をやってから
+https://note.com/koushikagawa/n/ne58862ebd22d
+
+6系でvue関係一式準備するコマンド
+php artisan preset vue
+
+
+
+動作確認は下の物で行う。
+
+LaravelのフロントエンドにTypeScriptを導入する
+https://blog.nakamu.life/posts/laravel-typescript
+
+【Laravel6】Vueがデフォルトでインストールされなくなっていた件【Vue.js】
+https://qiita.com/harukei/items/0f7b32df51b9311a50ff
+
+Laravel 6.x〜 Vue.jsを利用する [axios][Laravel Mix]
+https://noumenon-th.net/programming/2020/02/09/laravel-6-vue-js/
