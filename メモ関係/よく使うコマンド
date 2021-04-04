@@ -1,0 +1,2 @@
+コントローラー 生成
+php artisan make:controller

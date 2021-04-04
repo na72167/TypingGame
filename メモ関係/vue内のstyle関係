@@ -1,0 +1,7 @@
+:class="{'tab__item--active': tab === 1 }"
+
+style関係
+https://www.hypertextcandy.com/vuejs-introduction-class-style/
+
+サーバサイドレンダリング (SSR) とは何か?
+https://ssr.vuejs.org/ja/#%E3%82%B5%E3%83%BC%E3%83%90%E3%82%B5%E3%82%A4%E3%83%89%E3%83%AC%E3%83%B3%E3%83%80%E3%83%AA%E3%83%B3%E3%82%B0-ssr-%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B

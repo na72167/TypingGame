@@ -1,2 +1,5 @@
 Laravelでセッションを使ってみる
 https://qiita.com/reflet/items/5638ab18fd7cededed17
+
+Vue + sessionStorageでページ移動しても検索内容をキープする（ダウンロード可）
+https://blog.capilano-fw.com/?p=7124
