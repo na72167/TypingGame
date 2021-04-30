@@ -1,0 +1,14 @@
+コールバック関数/高階関数を利用する
+https://www.javadrive.jp/javascript/function/index16.html
+
+
+// 第二引数がコールバック関数として扱いたい関数名の宣言？
+function tomato(price, fun){
+  const name = 'トマト';
+  //同じ関数内でなおかつ同一引数名が指定されている事が処理の紐付け条件になっている。
+  fun(name, price);
+}
+const test = function(name, price){
+  console.log(name + ' の値段は ' + price + ' 円です。');
+}
+tomato(100, test);

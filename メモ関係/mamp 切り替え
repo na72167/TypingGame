@@ -6,7 +6,7 @@ Laravelを使いたい時
 EmRevApp-LaraVueVer-.development/
 
 その他を使いたい時
-ServerName production.development
+http://production.development/
 
 ワードプレス ログイン
 http://production.development/wordpress/wp-admin/
