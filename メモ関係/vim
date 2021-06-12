@@ -1,0 +1,38 @@
+これからVimを触る人向け！今まで使っていたエディタのようにVimを使いはじめる。
+https://qiita.com/kamykn/items/9be187a47d5806b113da
+
+netrw.vimでディレクトリをツリー表示する
+http://blog.tojiru.net/article/234400966.html
+
+脱初心者を目指すなら知っておきたい便利なVimコマンド25選 (Vimmerレベル診断付き)
+https://qiita.com/jnchito/items/57ffda5712636a9a1e62
+
+Vim pluginへの入門[NeoBundle.vim]
+https://qiita.com/okamos/items/caf5a0b19ce893a75363
+
+Vim実践的入門初級編
+https://qiita.com/okamos/items/d7fdbee03c4857b1ce20
+
+Vimをカスタマイズしよう 〜 Vimはいいぞ！ゴリラと学ぶVim講座(6)
+https://knowledge.sakura.ad.jp/23121/
+
+vi・vimUNDO（元に戻す）・REDO（元に戻したものを戻す）
+http://www.webhtm.net/vim/undo.htm
+
+windows - Vim日本語ドキュメント
+https://vim-jp.org/vimdoc-ja/windows.html
+
+【Vim】 ファイルを開く際のファイル名補完をbashのように行う
+https://atomitech.jp/study/entry-427/
+
+素のVimだと限界がある！絶対にインストールしておきたいVimプラグイン25個
+https://career.levtech.jp/guide/knowhow/article/29/
+
+Learn Vim ProgressivelyAdd Starthinca15hamaguchikekeke
+http://mattn.kaoriya.net/software/vim/20110902125512.htm
+
+Vimのテキストオブジェクトについてまとめた
+https://qiita.com/kasei-san/items/143af11bb2559cf0e540
+
+.vimrcが自動で読みこまれない(.vimrcが読み込まれない時に確認する事などがまとめられている。)
+https://teratail.com/questions/225084

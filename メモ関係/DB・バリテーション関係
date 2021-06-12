@@ -1,6 +1,6 @@
 db バリテーション関係
 バリテーション公式(5.8系)
-https://readouble.com/laravel/5.8/ja/validation.html
+https://readouble.com//5.8/ja/validation.html
 
 例(Requestは引数指定する場合に使うもの)
 requiredは入力必須項目にのみつける。
